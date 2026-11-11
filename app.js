@@ -22,3 +22,20 @@ function detect(wanted=0){try{board=identify(original,wanted);$('#size').value=b
 $('#file').addEventListener('change',async e=>{let f=e.target.files[0];if(!f)return;$('#status').textContent='正在识别截图…';$('#work').hidden=true;$('#result').hidden=true;try{let url=URL.createObjectURL(f),img=new Image();img.onload=()=>{original=img;URL.revokeObjectURL(url);setTimeout(()=>detect(),20)};img.onerror=()=>{$('#status').textContent='无法读取图片，请换一张截图。';URL.revokeObjectURL(url)};img.src=url}catch(err){$('#status').textContent=err.message}});
 $('#detect').onclick=()=>{if(original)detect(Number($('#size').value))};$('#solve').onclick=solve;document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('#mode button').forEach(x=>x.classList.toggle('active',x===b));$('#hint').textContent=mode==='color'?'点击格子可切换区域编号，直到与截图颜色一致。':mode==='fixed'?'点击已确认的猫，再次点击可取消。':mode==='excluded'?'点击已确认的 X，再次点击可取消。':'棋盘上的数字代表识别的颜色区域；同一区域应为相同数字。'});
 
+// The browser controls whether and when the native installation prompt is available.
+let installPrompt = null;
+const installButton = document.querySelector('#install');
+const installHelp = document.querySelector('#install-help');
+window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
+installButton.addEventListener('click', async () => {
+  if (installPrompt) {
+    const prompt = installPrompt; installPrompt = null;
+    try { await prompt.prompt(); await prompt.userChoice; } catch (_) { installHelp.hidden = false; installButton.setAttribute('aria-expanded', 'true'); }
+  } else {
+    installHelp.hidden = !installHelp.hidden;
+    installButton.setAttribute('aria-expanded', String(!installHelp.hidden));
+  }
+});
+window.addEventListener('appinstalled', () => { installHelp.hidden = true; installButton.textContent = '✓ 已安装应用'; installButton.disabled = true; });
+if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true) { installButton.hidden = true; }
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {})); }

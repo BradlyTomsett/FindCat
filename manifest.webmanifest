@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "找猫助手",
+  "short_name": "找猫助手",
+  "description": "在手机本地识别找猫游戏截图并标注位置",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f2e9",
+  "theme_color": "#356b4b",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
