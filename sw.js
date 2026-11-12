@@ -1,6 +1,6 @@
 'use strict';
-const CACHE = 'findcat-shell-v5';
-const SHELL = ['./', './index.html', './style.css?v=pwa5', './app.js?v=pwa5', './manifest.webmanifest', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
+const CACHE = 'findcat-shell-v6';
+const SHELL = ['./', './index.html', './style.css?v=pwa6', './app.js?v=pwa6', './manifest.webmanifest', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
@@ -16,3 +16,4 @@ self.addEventListener('fetch', event => {
     return response;
   }).catch(async () => (await caches.match(request)) || (request.mode === 'navigate' ? await caches.match('./index.html') : undefined) || Response.error()));
 });
+

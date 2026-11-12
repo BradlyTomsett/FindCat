@@ -3,3 +3,4 @@
 .install-area{margin-top:25px}.install-button{background:#356b4b;color:white;border:0;border-radius:12px;padding:13px 18px;font-size:14px;font-weight:750;cursor:pointer}.install-help{margin-top:12px;padding:13px 15px;background:#fff;border-radius:12px;color:#536a5b;font-size:13px;line-height:1.7}.install-help p{margin:4px 0}.install-button:focus-visible{outline:3px solid #df9565;outline-offset:3px}
 
 .auto-save{display:flex;align-items:center;gap:9px;margin-top:16px;color:#356b4b;font-size:14px;font-weight:700}.auto-save input{width:19px;height:19px;accent-color:#356b4b}
+#manual{margin-bottom:12px}#manual-image{position:relative;line-height:0}#manual-image img{display:block;width:100%;height:auto;border-radius:10px;cursor:crosshair}#manual-target{position:absolute;width:16px;height:16px;border:2px solid white;border-radius:50%;background:#ed2338;transform:translate(-50%,-50%);pointer-events:none}
