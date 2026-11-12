@@ -1,6 +1,6 @@
 'use strict';
-const CACHE = 'findcat-shell-v2';
-const SHELL = ['./', './index.html', './style.css?v=pwa2', './app.js?v=pwa2', './manifest.webmanifest', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
+const CACHE = 'findcat-shell-v3';
+const SHELL = ['./', './index.html', './style.css?v=pwa3', './app.js?v=pwa3', './manifest.webmanifest', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
